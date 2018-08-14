@@ -11,13 +11,13 @@ var connection = mysql.createConnection({
 	user: 'root',
 
 	// Your password
-	password: '',
-	database: 'Bamazon'
+	password: 'heinrich14',
+	database: 'bamazon'
 });
 
 // promptManagerAction will present menu options to the manager and trigger appropriate logic
 function promptManagerAction() {
-	// console.log('___ENTER promptManagerAction___');
+	 console.log('___ENTER promptManagerAction___');
 
 	// Prompt the manager to select an option
 	inquirer.prompt([

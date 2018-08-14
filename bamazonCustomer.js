@@ -7,18 +7,18 @@ var connection = mysql.createConnection({
 	host: 'localhost',
 	port: 3306,
 
-	// Your username
+	// Your usernam
 	user: 'root',
 
 	// Your password
 	password: 'heinrich14',
-	database: 'bamazon_db'
+	database: 'bamazon'
 });
 
 // validateInput makes sure that the user is supplying only positive integers for their inputs
 function validateInput(value) {
 	var integer = Number.isInteger(parseFloat(value));
-	var sign = Math.sign(value);
+	var sign = Math.sign(value);m
 
 	if (integer && (sign === 1)) {
 		return true;
@@ -29,7 +29,7 @@ function validateInput(value) {
 
 // promptUserPurchase will prompt the user for the item/quantity they would like to purchase
 function promptUserPurchase() {
-	// console.log('___ENTER promptUserPurchase___');
+	console.log('___ENTER promptUserPurchase___');
 
 	// Prompt the user to select an item
 	inquirer.prompt([
@@ -48,7 +48,7 @@ function promptUserPurchase() {
 			filter: Number
 		}
 	]).then(function(input) {
-		// console.log('Customer has selected: \n    item_id = '  + input.item_id + '\n    quantity = ' + input.quantity);
+		console.log('Customer has selected: \n    item_id = '  + input.item_id + '\n    quantity = ' + input.quantity);
 
 		var item = input.item_id;
 		var quantity = input.quantity;
@@ -60,7 +60,7 @@ function promptUserPurchase() {
 			if (err) throw err;
 
 			// If the user has selected an invalid item ID, data attay will be empty
-			// console.log('data = ' + JSON.stringify(data));
+			console.log('data = ' + JSON.stringify(data));
 
 			if (data.length === 0) {
 				console.log('ERROR: Invalid Item ID. Please select a valid Item ID.');
@@ -69,8 +69,8 @@ function promptUserPurchase() {
 			} else {
 				var productData = data[0];
 
-				// console.log('productData = ' + JSON.stringify(productData));
-				// console.log('productData.stock_quantity = ' + productData.stock_quantity);
+				console.log('productData = ' + JSON.stringify(productData));
+				console.log('productData.stock_quantity = ' + productData.stock_quantity);
 
 				// If the quantity requested by the user is in stock
 				if (quantity <= productData.stock_quantity) {
@@ -84,7 +84,7 @@ function promptUserPurchase() {
 					connection.query(updateQueryStr, function(err, data) {
 						if (err) throw err;
 
-						console.log('Your oder has been placed! Your total is $' + productData.price * quantity);
+						console.log('Your order has been placed! Your total is $' + productData.price * quantity);
 						console.log('Thank you for shopping with us!');
 						console.log("\n---------------------------------------------------------------------\n");
 
